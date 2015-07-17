@@ -2,65 +2,58 @@
 
 Meteor.subscribe("barras");
 Meteor.subscribe("resultados");
-//Meteor.subscribe("figuras");
+
 //var Bars = new Meteor.Collection();
 
 Session.setDefault('barChartSort','none');
 Session.setDefault('barChartSortModifier',undefined);
 
-/*
-var misFiguras = Figuras.find({}).fetch();
-var longitud = misFiguras.length;
-console.log("HIZO ALGO EN FIGURAS: "+longitud);
-*/
+
 //Meteor.startup(function(){
 Template.barChart.helpers({
 
   traerFiguras: function(){
-  miVector = [10,20,30,40,50,60,70,80,90,100];
+    miVector = [10,20,30,40,50,60,70,80,90,100];
 
-  var misBarras = Bars.find({}).fetch();
-  var longitud2 = misBarras.length;
-  console.log("longitud Barras: "+longitud2);
+    var misBarras = Bars.find({}).fetch();
+    var longitud2 = misBarras.length;
+    console.log("longitud Barras: "+longitud2);
 
-  //if(Bars.find({}).count() != 0){
-    /*
+    //if(Bars.find({}).count() != 0){
+      /*
     Bars.insert({
         value:Math.floor(Math.random() * 25)
 			  //value:miVector[i]
     });
     */
     
-   // Figuras.aggregate([ { $group: { _id: "$fill", value:{$sum: 1} } }, {$out: Bars}]);
-
-    //Figuras.insert({value: "Juan Manuel"});
+   
     var misFiguras = Figuras.find({}).fetch();
     var longitud = misFiguras.length;
     console.log("HIZO ALGO EN FIGURAS: "+longitud);
 
-  //};
-  
-   
-//});
-}, 
 
-traerResultados: function(){
-  var result = Resultados.find({}).fetch();
-  var longResul = result.length;
-  console.log("long de Resultados: "+longResul);
-  var uno = result[6].figuras.length;
-  var dos = result[6].figuras[1];
-  
+    //}; 
+    //});
+  }, 
 
-  for(i=0; i<result.length; i++){
-  	var longInternalArray = result[i].figuras.length;
-  	// BUSCAR COMO CAMBIAR figuras POR UN PARÁMETRO 
-  	//for(j=0; j<longInternalArray; j++){
+  traerResultados: function(){
+    var result = Resultados.find({}).fetch();
+    var longResul = result.length;
+    console.log("long de Resultados: "+longResul);
+    var uno = result[6].figuras.length;
+    var dos = result[6].figuras[1];
+  
+    /*
+    for(i=0; i<result.length; i++){
+  	  var longInternalArray = result[i].figuras.length;
+  	  // BUSCAR COMO CAMBIAR figuras POR UN PARÁMETRO 
+  	  //for(j=0; j<longInternalArray; j++){
   		Bars.insert({"_id": result[i]._id, "value": longInternalArray});
-  	//}
-  }
-  
-}     
+  	  //}
+    }
+    */
+  }     
 
 })
 
@@ -97,6 +90,10 @@ Template.barChart.events({
 	},
 	'click rect':function(event, template){
 		alert('you clicked a bar for document with _id=' + $(event.currentTarget).data("id"));
+	},
+
+	'click .consultar':function(){
+	  Meteor.call("realizarConsulta", "hola");
 	}
 });
 

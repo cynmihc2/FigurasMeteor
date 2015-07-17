@@ -1,5 +1,6 @@
 //var Slices = new Meteor.Collection(null);
 Meteor.subscribe("slices");
+Meteor.subscribe("resultados");
 
 Session.setDefault('pieChartSort','none');
 Session.setDefault('pieChartSortModifier',undefined);
@@ -56,6 +57,10 @@ Template.pieChart.events({
 			Session.set('pieChartSort','none');
 			Session.set('pieChartSortModifier',{});
 		}
+	},
+
+	'click .consultar':function(){
+	  Meteor.call("realizarConsultaPie", "hola");
 	}
 });
 

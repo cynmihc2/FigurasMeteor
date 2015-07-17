@@ -155,9 +155,7 @@ Template.elCanvas.events({
     var shapeId = activeObject.mongoId;
     var misFiguras = Figuras.find({}).fetch();
     //var eleccion = $(temporal).data("shape");
-    //console.log("privadaCompartir: "+!!this.private);
     Meteor.call("compartirFig", shapeId, !!this.private);
-    //Meteor.call("compartirFig", shapeId, false);
 
   }, 
 
@@ -166,9 +164,7 @@ Template.elCanvas.events({
     var activeObject = canvas.getActiveObject();
     var shapeId = activeObject.mongoId;
     //var eleccion = $(temporal).data("shape");
-    //console.log("privadaOcultar: "+!this.private);
     Meteor.call("compartirFig", shapeId, !this.private);
-    //Meteor.call("compartirFig", shapeId, true);
   }
 
 });

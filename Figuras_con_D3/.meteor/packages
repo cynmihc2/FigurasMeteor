@@ -18,3 +18,4 @@ d3
 standard-app-packages
 erasaur:server-session
 insecure
+monbro:mongodb-mapreduce-aggregation
