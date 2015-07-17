@@ -1,0 +1,94 @@
+<template name="principal">
+
+  <div id="container">
+    <section id="menu">
+      
+      {{#if currentUser}}
+        
+        <div class="btns-group-vertical">
+          <a href="#" class="js-user-menu btn-secondary">
+            {{#if userMenuOpen}}
+              <span class="icon-arrow-up"></span>
+              {{else}}
+              <span class="icon-arrow-down"></span>
+            {{/if}}
+             {{mostrarNombre}}
+          </a>
+          <a class="js-logout btn-secondary">Cerrar Sesión</a>
+        </div>
+        <div class="btns-group-vertical"> 
+          {{#if userMenuOpen}}
+            
+            <a href="{{pathFor 'join'}}" class="btn-secondary">Modificar Datos Personales</a>
+            <a href="{{pathFor 'distribuirDatos'}}" class="btn-secondary">Distribuir datos</a>
+            <a href="{{pathFor 'visualizarDatos'}}" class="btn-secondary">Visualizar datos</a>
+          {{/if}}
+        </div>
+        
+        
+      {{else}}
+
+        <div class="btns-group">
+          <a href="{{pathFor 'signin'}}" class="btn-secondary">Sign In</a>
+          <a href="{{pathFor 'join'}}" class="btn-secondary">Join</a>
+        </div>
+             
+      {{/if}}
+      <!--
+      <div class="btns-group-vertical">
+        <a href="{{pathFor 'join'}}" class="btn-secondary">Registrarse</a>
+        <a href="{{pathFor 'signin'}}" class="btn-secondary">Autenticarse</a>
+        <a href="{{pathFor 'distribuirDatos'}}" class="btn-secondary">Distribuir datos</a>
+        <a href="{{pathFor 'visualizarDatos'}}" class="btn-secondary">Visualizar datos</a>
+      </div>
+      -->
+    </section>
+
+    <div id="content-container">
+      {{> yield}}
+    </div>   
+  </div>
+
+</template>
+
+<template name="distribuirDatos">
+  
+  <h1>EL CANVAS</h1>
+
+  <div id="elCanvas" class="span9">
+      {{> elCanvas}}
+      {{> figuras}}
+      {{> tablaReactiva}}
+  
+  </div>
+</template>
+
+
+<template name="elCanvas">
+  <canvas id="c" width="550" height="400" style="border:1px solid black;"></canvas> 
+  <div>
+    <input class="btn add-shape" data-shape="rect" type="button" value="Agregar rectangulo">
+    <input class="btn add-shape" data-shape="triangle" type="button" value="Agregar triángulo">
+    <input class="btn add-shape" data-shape="circle" type="button" value="Agregar circulo">
+    <input class="btn remove-shape" type="button" value="Eliminar Figura">
+  </div>
+  <div>
+    <input class="btn color-shape" data-shape="red" type="button" value="Pintar rojo">
+    <input class="btn color-shape" data-shape="yellow" type="button" value="Pintar amarillo">
+    <input class="btn color-shape" data-shape="green" type="button" value="Pintar verde"> 
+    <input class="btn compartir" type="button" value="Compartir"> 
+    <input class="btn ocultar" type="button" value="Ocultar"> 
+
+  </div>
+  {{dibujar}}
+</template>
+
+
+<template name="figuras">
+  <!--{{#if existenFiguras}}-->
+    
+    {{#each figuras}}
+      {{figurita}}
+    {{/each}} 
+  <!--{{/if}}-->
+</template>

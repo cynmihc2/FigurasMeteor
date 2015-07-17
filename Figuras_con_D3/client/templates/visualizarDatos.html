@@ -1,0 +1,41 @@
+<template name="visualizarDatos">
+  
+  <h1>Graficos</h1>
+
+  <div class="btns-group-vertical">
+      <a href="{{pathFor 'barChart'}}">Grafico de Barras</a>
+      <a href="{{pathFor 'pieChart'}}">Grafico de Torta</a>
+  </div>
+</template>
+
+<template name="barChart">
+	  <a href = "{{pathFor 'visualizarDatos'}}">Volver</a>
+    <svg id="barChart">
+    </svg>
+    {{traerFiguras}}
+    {{traerResultados}}
+    <input type="button" id="add" value="Add a Value" />
+    <input type="button" id="remove" value="Remove a Value" />
+    <input type="button" id="randomize" value="Randomize Values" />
+    <input type="button" id="toggleSort" value="Toggle Sorting" />
+
+</template>
+
+<template name="pie">
+   <h1>Figuras en la base de datos</h1>
+   <div class="btns-group-vertical">
+      <svg>
+        
+      </svg>
+  </div>
+</template>
+
+<template name="pieChart">
+    <a href = "{{pathFor 'visualizarDatos'}}">Volver</a>
+    <svg id="pieChart">
+    </svg>
+    <input type="button" id="add" value="Add a Value" />
+    <input type="button" id="remove" value="Remove a Value" />
+    <input type="button" id="randomize" value="Randomize Values" />
+    <input type="button" id="toggleSort" value="Toggle Sorting" />
+</template>
